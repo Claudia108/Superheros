@@ -13,7 +13,7 @@ class MarvelService
   private
 
     def response(params = {})
-      @connection.get('characters', params.merge(keys))
+      @connection.get('characters', params.merge(access_params))
     end
 
     def public_key
@@ -24,12 +24,11 @@ class MarvelService
       ENV['MARVEL_PRIVATE_KEY']
     end
 
-    def keys
+    def access_params
       timestamp = Time.now.to_s
       hash = Digest::MD5.hexdigest(timestamp + private_key + public_key)
       { ts: timestamp,
         apikey: public_key,
         hash: hash }
     end
-
 end
