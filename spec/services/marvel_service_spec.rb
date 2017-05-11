@@ -20,4 +20,24 @@ describe MarvelService do
       end
     end
   end
+
+  describe "#total" do
+    it "shows total of all characters" do
+      VCR.use_cassette("services/return_total") do
+        total = service.total({})
+
+        expect(total).to eq(1485)
+      end
+    end
+  end
+
+  describe "#all_characters" do
+    it "returns all available characters" do
+      VCR.use_cassette("services/return_all_characters") do
+        all_characters = service.all_characters({})
+
+        expect(all_characters.count).to eq(1485)
+      end
+    end
+  end
 end

@@ -6,6 +6,6 @@ class Character < OpenStruct
   end
 
   def sort_characters(params)
-    @service.characters(params).sort_by {|character| character[:comics][:available] }.reverse    
+    sorted = @service.all_characters(params).sort_by {|character| character[:comics][:available] }.reverse
   end
 end
