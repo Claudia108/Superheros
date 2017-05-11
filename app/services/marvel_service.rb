@@ -12,7 +12,8 @@ class MarvelService
 
   private
 
-    def response(params = {})
+    def response(params)
+      params = {limit: 100}
       @connection.get('characters', params.merge(access_params))
     end
 

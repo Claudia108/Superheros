@@ -11,10 +11,10 @@ describe MarvelService do
   describe "#characters" do
     it "finds a character and it's comics" do
       VCR.use_cassette("services/return_characters") do
-        characters = service.characters({limit: 30})
+        characters = service.characters({})
         character  = characters.first
 
-        expect(characters.count).to eq(30)
+        expect(characters.count).to eq(100)
         expect(character[:name]).to eq('3-D Man')
         expect(character[:comics][:available]).to eq(11)
       end
