@@ -16,7 +16,7 @@
 /config/application.yml
 
 /public/assets
-/test/cassettes
+/spec/cassettes
 
 /coverage
 
