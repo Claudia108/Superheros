@@ -6,7 +6,7 @@ describe Character do
       characters = Character.new
       sorted = characters.sort_characters({})
 
-      expect(sorted.count).to eq(100)
+      expect(sorted.count).to eq(1500)
       expect(sorted.first[:comics][:available]).to eq(1258)
       expect(sorted.last[:comics][:available]).to eq(0)
     end

@@ -36,7 +36,7 @@ describe MarvelService do
       VCR.use_cassette("services/return_all_characters") do
         all_characters = service.all_characters({})
 
-        expect(all_characters.count).to eq(1485)
+        expect(all_characters.count).to eq(1500)
       end
     end
   end
