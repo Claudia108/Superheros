@@ -10,15 +10,15 @@ class MarvelService
     result(params)[:data][:results]
   end
 
-  def all_characters(params = { limit: 100, offset: 0 })
+  def total(params)
+    result(params)[:data][:total]
+  end
+  
+  def all_characters(params)
     end_of_loop = (total(params) / 100)
     (0..end_of_loop).map do |offset|
       characters({ limit: 100, offset: (offset * 100) })
     end.flatten
-  end
-
-  def total(params)
-    result(params)[:data][:total]
   end
 
   private
@@ -28,8 +28,7 @@ class MarvelService
     end
 
     def response(params)
-      new_params = params.merge(access_params)
-      @connection.get('characters', new_params)
+      @connection.get('characters', params.merge(access_params))
     end
 
     def public_key
