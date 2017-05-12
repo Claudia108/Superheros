@@ -1,0 +1,9 @@
+<h1>The Top 15 Superheros</h1>
+
+<% place = 1 %>
+<% @characters.each do |character| %>
+
+  <h5><%= place %>. Place: </h5><h3><%= character[:name] %> </h3>
+  <p>  Appears in <%= character[:comics][:available] %> comics </p>
+  <% place += 1  %>
+<% end %>

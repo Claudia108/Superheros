@@ -10,17 +10,6 @@ class MarvelService
     result[:data][:results]
   end
 
-  # def all_characters
-  #   total_characters = []
-  #   i = (total.to_f / 100).ceil
-  #   i.times do
-  #     total_characters << characters
-  #     i -= 1
-  #     params[:offset] += 100
-  #   end
-  #   total_characters.flatten
-  # end
-
   def total
     result[:data][:total]
   end
