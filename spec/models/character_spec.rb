@@ -26,4 +26,16 @@ describe Character do
       expect(top.last[:name]).to eq("Colossus")
     end
   end
+
+  it "adds location details to character" do
+    VCR.use_cassette("models/character_add_location") do
+
+      top_characters = Character.new.top_characters({limit: 100, offset: 0 })
+      cities = Location.new
+
+      combined = top_characters[0].character_add_location
+
+      expect(combined.count).to eq(15)
+    end
+  end
 end
