@@ -7,12 +7,27 @@ class MarvelService
   end
 
   def characters(params)
-    JSON.parse(response(params).body, symbolize_names: true)[:data][:results]
+    result(params)[:data][:results]
+  end
+
+  def total(params)
+    result(params)[:data][:total]
+  end
+  
+  def all_characters(params)
+    end_of_loop = (total(params) / 100)
+    (0..end_of_loop).map do |offset|
+      characters({ limit: 100, offset: (offset * 100) })
+    end.flatten
   end
 
   private
 
-    def response(params = {})
+    def result(params)
+      JSON.parse(response(params).body, symbolize_names: true)
+    end
+
+    def response(params)
       @connection.get('characters', params.merge(access_params))
     end
 
