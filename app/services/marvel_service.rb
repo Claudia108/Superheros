@@ -6,34 +6,32 @@ class MarvelService
     @connection = Faraday.new(url: 'https://gateway.marvel.com/v1/public/')
   end
 
-  def characters(params)
-    result(params)[:data][:results]
+  def characters
+    result[:data][:results]
   end
 
-  def all_characters(params)
-    # until total is reached get characters with limit 100 and offset + 100
-    params = { offset: 0}
-    total_characters = []
-    i = (total(params).to_f / 100).ceil
-    i.times do
-      total_characters << characters(params)
-      i -= 1
-      params[:offset] += 100
-    end
-    total_characters.flatten
-  end
+  # def all_characters
+  #   total_characters = []
+  #   i = (total.to_f / 100).ceil
+  #   i.times do
+  #     total_characters << characters
+  #     i -= 1
+  #     params[:offset] += 100
+  #   end
+  #   total_characters.flatten
+  # end
 
-  def total(params)
-    result(params)[:data][:total]
+  def total
+    result[:data][:total]
   end
 
   private
 
-    def result(params)
-      JSON.parse(response(params).body, symbolize_names: true)
+    def result
+      JSON.parse(response.body, symbolize_names: true)
     end
 
-    def response(params)
+    def response
       params = { limit: 100 }
       @connection.get('characters', params.merge(access_params))
     end
