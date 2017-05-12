@@ -125,6 +125,7 @@ GEM
     raindrops (0.16.0)
     rake (12.0.0)
     rdoc (4.3.0)
+    redis (3.3.3)
     rspec-core (3.5.4)
       rspec-support (~> 3.5.0)
     rspec-expectations (3.5.0)
@@ -195,6 +196,7 @@ DEPENDENCIES
   pg (~> 0.15)
   pry
   rails (= 4.2.6)
+  redis
   rspec-rails
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
