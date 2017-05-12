@@ -5,11 +5,11 @@ class Character < OpenStruct
     @service = MarvelService.new
   end
 
-  def sort_characters
-    @service.characters.sort_by { |character| character[:comics][:available] }.reverse
+  def sort_characters(params)
+    @service.all_characters(params).sort_by { |character| character[:comics][:available] }.reverse
   end
 
-  def top_characters
-    sort_characters[0..14]
+  def top_characters(params)
+    sort_characters(params)[0..14]
   end
 end

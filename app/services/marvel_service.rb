@@ -6,23 +6,30 @@ class MarvelService
     @connection = Faraday.new(url: 'https://gateway.marvel.com/v1/public/')
   end
 
-  def characters
-    result[:data][:results]
+  def characters(params)
+    result(params)[:data][:results]
   end
 
-  def total
-    result[:data][:total]
+  def all_characters(params = { limit: 100, offset: 0 })
+    end_of_loop = (total(params) / 100)
+    (0..end_of_loop).map do |offset|
+      characters({ limit: 100, offset: (offset * 100) })
+    end.flatten
+  end
+
+  def total(params)
+    result(params)[:data][:total]
   end
 
   private
 
-    def result
-      JSON.parse(response.body, symbolize_names: true)
+    def result(params)
+      JSON.parse(response(params).body, symbolize_names: true)
     end
 
-    def response
-      params = { limit: 100 }
-      @connection.get('characters', params.merge(access_params))
+    def response(params)
+      new_params = params.merge(access_params)
+      @connection.get('characters', new_params)
     end
 
     def public_key
