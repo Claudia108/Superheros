@@ -29,13 +29,17 @@ describe Character do
 
   it "adds location details to character" do
     VCR.use_cassette("models/character_add_location") do
-
-      top_characters = Character.new.top_characters({limit: 100, offset: 0 })
-      cities = Location.new
-
-      combined = top_characters[0].character_add_location
+      character = Character.new
+      combined = character.character_add_location({limit: 100, offset: 0 })
 
       expect(combined.count).to eq(15)
+      expect(combined.first[:hero][:name]).to eq("Spider-Man")
+      expect(combined.first[:location][0]).to eq("NYC")
+      expect(combined.first[:location][1]).to eq([40.73061, -73.935242])
+
+      expect(combined.last[:hero][:name]).to eq("Colossus")
+      expect(combined.last[:location][0]).to eq("Cleveland")
+      expect(combined.last[:location][1]).to eq([41.505493, -81.68129])
     end
   end
 end
