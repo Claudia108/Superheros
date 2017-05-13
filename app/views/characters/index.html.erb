@@ -3,7 +3,7 @@
 <% place = 1 %>
 <% @characters.each do |character| %>
 
-  <h5><%= place %>. Place: </h5><h3><%= character[:name] %> </h3>
+  <h5><strong>Number <%= place %></strong> </h5><h3><%= character[:name] %> </h3>
   <p>  Appears in <%= character[:comics][:available] %> comics </p>
   <br>
   <% place += 1  %>
