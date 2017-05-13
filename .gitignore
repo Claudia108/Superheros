@@ -20,6 +20,6 @@
 
 /coverage
 
-
+/redis-stable
 
 .byebug_history

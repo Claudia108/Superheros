@@ -19,4 +19,22 @@ class Location
       "Cleveland" => [41.505493, -81.681290]
     }
   end
+
+  def store_cities
+    # finally, this works in redis-cli:
+    # geoadd Cities -73.935242 40.730610 "NYC" -71.038887 42.364506 "Boston" -77.035507 38.894207 "DC"
+    # georadius Cities -71.038887 42.364506 800 km withdist desc
+
+    # implement:
+    #
+    # map over cities.length with index to do something like this:
+    # $redis.GEOADD("Cities", cities[cities.keys[i]][1], cities[cities.keys[i]][0], cities.keys[i])
+
+    # note: coordinates need to be switched (first long, then lat)
+  end
+
+  def close_by_cities
+    # set variable for city: cities[cities.keys[n]][1]
+    # georadius Cities -71.038887 42.364506 800 km withdist asc
+  end
 end
