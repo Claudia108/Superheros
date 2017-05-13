@@ -18,12 +18,15 @@ class Character < OpenStruct
     total_combos = top_characters(params).each_with_index.map do |character, i|
       selected = character.slice(:id, :name, :thumbnail, :comics)
       selected[:location] = cities[i][0]
-      $redis.hmset("characters", "score", i, "id", selected[:id], "name", selected[:name], "thumbnail", selected[:thumbnail], "available_comics", selected[:comics][:available], "location", selected[:location])
+      # $redis.hmset("characters:#{i + 1}", "id", selected[:id], "name", selected[:name], "thumbnail", selected[:thumbnail], "available_comics", selected[:comics][:available], "location", selected[:location])
       selected
-      # filter character attributes to keep (:id, :name, :comics[:available], maybe :thumbnail,...)
-      # store in redis?
     end
   end
+
+  # def get_characters
+    # another loop needed? or try MHGETALL from lua
+    # $redis.mhvals("characters:#{i + 1}")
+  # end
 
   def characters_close_by
     # call Location.new.close_by_cities or just call redis in here
