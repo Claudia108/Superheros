@@ -71,10 +71,7 @@ describe Character do
                     :comics   =>  {:available=>676},
                     :location =>  "Baltimore"
                   }]
-      locations = [ "Baltimore", "360.0570",
-                    "DC", "395.3770",
-                    "Chicago", "849.4404"
-                  ]
+      locations = [ "Baltimore", "DC", "Chicago" ]
 
       sorted_characters = characters.sort_selected_characters_by_distance(selected_characters, locations)
 

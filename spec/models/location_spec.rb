@@ -22,4 +22,21 @@ describe Location do
     expect(cities.count).to eq(4)
     expect(cities).to eq([["Boston", "0.0001"], ["NYC", "187.5856"], ["Baltimore", "360.0570"], ["DC", "395.3770"]])
   end
+
+
+  it "shows only city names in array" do
+    location = Location.new
+    cities = location.show_sorted_cities
+
+    expect(cities.count).to eq(4)
+    expect(cities).to eq(["Boston", "NYC", "Baltimore", "DC"])
+  end
+
+  it "shows only formatted city distances in array" do
+    location = Location.new
+    cities = location.show_distance
+
+    expect(cities.count).to eq(4)
+    expect(cities).to eq([0, 188, 360, 395])
+  end
 end

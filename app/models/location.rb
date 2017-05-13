@@ -39,7 +39,13 @@ class Location
 
   def show_distance
     five_hundred_miles_from_Boston.map do |city|
-      city[1].to_i
+      city[1].to_f.round(0)
+    end
+  end
+
+  def show_sorted_cities
+    five_hundred_miles_from_Boston.map do |city|
+      city[0]
     end
   end
 end
