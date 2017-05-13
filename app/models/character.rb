@@ -16,13 +16,11 @@ class Character < OpenStruct
   def character_add_location(params)
     cities = Location.new.city_coordinates.to_a
     total_combos = top_characters(params).each_with_index.map do |character, i|
-      # change to Array if I end up calling this for sorted display
-      combined = Hash.new
-      combined[:hero] = character
+      selected = character.slice(:id, :name, :thumbnail, :comics)
+      selected[:location] = cities[i][0]
+      $redis.hmset("characters", "score", i, "id", selected[:id], "name", selected[:name], "thumbnail", selected[:thumbnail], "available_comics", selected[:comics][:available], "location", selected[:location])
+      selected
       # filter character attributes to keep (:id, :name, :comics[:available], maybe :thumbnail,...)
-      combined[:location] = cities[i]
-      # can remove coordinates from cities
-      combined
       # store in redis?
     end
   end

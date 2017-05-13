@@ -34,10 +34,10 @@ describe Character do
 
       expect(combined.count).to eq(15)
       expect(combined.first[:name]).to eq("Spider-Man")
-      expect(combined.first[:location][0]).to eq("NYC")
+      expect(combined.first[:location]).to eq("NYC")
 
       expect(combined.last[:name]).to eq("Colossus")
-      expect(combined.last[:location][0]).to eq("Cleveland")
+      expect(combined.last[:location]).to eq("Cleveland")
     end
   end
 end
