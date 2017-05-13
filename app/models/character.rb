@@ -14,7 +14,7 @@ class Character < OpenStruct
   end
 
   def character_add_location(params)
-    cities = Location.new.cities.to_a
+    cities = Location.new.city_coordinates.to_a
     total_combos = top_characters(params).each_with_index.map do |character, i|
       # change to Array if I end up calling this for sorted display
       combined = Hash.new

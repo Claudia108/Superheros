@@ -10,7 +10,7 @@ describe Character do
       expect(sorted.first[:comics][:available]).to eq(2939)
       expect(sorted.first[:name]).to eq("Spider-Man")
       expect(sorted.last[:comics][:available]).to eq(0)
-      expect(sorted.last[:name]).to eq("Shockwave")
+      expect(sorted.last[:name]).to eq("Ajaxis")
     end
   end
 
@@ -22,24 +22,22 @@ describe Character do
       expect(top.count).to eq(15)
       expect(top.first[:comics][:available]).to eq(2939)
       expect(top.first[:name]).to eq("Spider-Man")
-      expect(top.last[:comics][:available]).to eq(587)
+      expect(top.last[:comics][:available]).to eq(588)
       expect(top.last[:name]).to eq("Colossus")
     end
   end
 
   it "adds location details to character" do
     VCR.use_cassette("models/character_add_location") do
-      character = Character.new
-      combined = character.character_add_location({limit: 100, offset: 0 })
+      characters = Character.new
+      combined = characters.character_add_location({limit: 100, offset: 0 })
 
       expect(combined.count).to eq(15)
-      expect(combined.first[:hero][:name]).to eq("Spider-Man")
+      expect(combined.first[:name]).to eq("Spider-Man")
       expect(combined.first[:location][0]).to eq("NYC")
-      expect(combined.first[:location][1]).to eq([40.73061, -73.935242])
 
-      expect(combined.last[:hero][:name]).to eq("Colossus")
+      expect(combined.last[:name]).to eq("Colossus")
       expect(combined.last[:location][0]).to eq("Cleveland")
-      expect(combined.last[:location][1]).to eq([41.505493, -81.68129])
     end
   end
 end

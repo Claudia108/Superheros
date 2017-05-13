@@ -3,7 +3,7 @@ require 'rails_helper'
 describe Location do
   it "sorts characters by number of comics they appear in" do
     location = Location.new
-    cities = location.cities
+    cities = location.city_coordinates
 
     expect(cities.count).to eq(15)
     expect(cities.class).to eq(Hash)
