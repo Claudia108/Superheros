@@ -40,4 +40,19 @@ describe Character do
       expect(combined.last[:location]).to eq("Cleveland")
     end
   end
+
+  it "finds characters by locations" do
+    VCR.use_cassette("models/characters_close_by") do
+      characters = Character.new
+      close_by_characters = characters.characters_close_to_Boston({limit: 100, offset: 0 })
+
+      expect(close_by_characters.count).to eq(4)
+      expect(close_by_characters.first[:name]).to eq("Spider-Man")
+      expect(close_by_characters.first[:location]).to eq("NYC")
+
+      expect(close_by_characters.last[:name]).to eq("Storm")
+      expect(close_by_characters.last[:location]).to eq("Baltimore
+      ")
+    end
+  end
 end

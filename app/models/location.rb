@@ -29,8 +29,11 @@ class Location
     end
   end
 
-  def close_by_cities
-    # set variable for city: cities[cities.keys[n]][1]
-    # georadius Cities -71.038887 42.364506 800 km withdist asc
+  def five_hundred_miles_from_Boston
+    long = city_coordinates["Boston"][1]
+    lat = city_coordinates["Boston"][0]
+    radius = 500
+    units = "mi"
+    $redis.GEORADIUS("cities", long, lat, radius, units, "WITHDIST", "ASC")
   end
 end

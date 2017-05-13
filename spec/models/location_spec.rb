@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe Location do
-  it "sorts characters by number of comics they appear in" do
+  it "lists cities with their coordinates" do
     location = Location.new
     cities = location.city_coordinates
 
@@ -13,5 +13,13 @@ describe Location do
     expect(cities["Boston"].class).to eq(Array)
     expect(cities["Cleveland"]).to eq([41.505493, -81.68129])
     expect(cities[cities.keys.last]).to eq([41.505493, -81.68129])
+  end
+
+  it "retrieves cities within 500 miles from Boston ascending by distance" do
+    location = Location.new
+    cities = location.five_hundred_miles_from_Boston
+
+    expect(cities.count).to eq(4)
+    expect(cities).to eq([["Boston", "0.0001"], ["NYC", "187.5856"], ["Baltimore", "360.0570"], ["DC", "395.3770"]])
   end
 end

@@ -28,10 +28,10 @@ class Character < OpenStruct
     # $redis.mhvals("characters:#{i + 1}")
   # end
 
-  def characters_close_by
-    # call Location.new.close_by_cities or just call redis in here
-    # map result with character_add_location and pick character[:name] + distance (db cities array[i][1])
-    # send to view
-  end
 
+  def characters_close_to_Boston(params)
+    close_by_cities = Location.new.fifty_miles_from_Boston.flatten
+    character_add_location(params).select { |character| close_by_cities.include?(character[:location]) }
+    # need to improve performance with redis db fetch
+  end
 end
