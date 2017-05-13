@@ -30,8 +30,13 @@ class Character < OpenStruct
 
 
   def characters_close_to_Boston(params)
-    close_by_cities = Location.new.fifty_miles_from_Boston.flatten
-    character_add_location(params).select { |character| close_by_cities.include?(character[:location]) }
+    close_by_cities = Location.new.five_hundred_miles_from_Boston.flatten
+    selected_characters = character_add_location(params).select { |character| close_by_cities.include?(character[:location]) }
+    sort_selected_characters_by_distance(selected_characters, close_by_cities)
     # need to improve performance with redis db fetch
+  end
+
+  def sort_selected_characters_by_distance(selected_characters, close_by_cities)
+    selected_characters.sort_by { |character| close_by_cities.index(character[:location])}
   end
 end

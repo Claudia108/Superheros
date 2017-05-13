@@ -41,7 +41,7 @@ describe Character do
     end
   end
 
-  it "finds characters by locations" do
+  it "finds characters by their locations" do
     VCR.use_cassette("models/characters_close_by") do
       characters = Character.new
       close_by_characters = characters.characters_close_to_Boston({limit: 100, offset: 0 })
@@ -51,8 +51,34 @@ describe Character do
       expect(close_by_characters.first[:location]).to eq("NYC")
 
       expect(close_by_characters.last[:name]).to eq("Storm")
-      expect(close_by_characters.last[:location]).to eq("Baltimore
-      ")
+      expect(close_by_characters.last[:location]).to eq("Baltimore")
+    end
+  end
+
+  it "sorts selected characters by distance of their location to given city" do
+    VCR.use_cassette("models/sort_selected_characters_by_distance") do
+      characters = Character.new
+      selected_characters = [{
+                              :name=>"Iron Man",
+                              :comics=>
+                                {:available=>2228},
+                              :location=>"DC"
+                            },
+                            { :name=>"Storm",
+                              :comics=>
+                                {:available=>676},
+                              :location=>"Baltimore"
+                            }]
+      locations = ["Baltimore", "360.0570", "DC", "395.3770"]
+
+      sorted_characters = characters.sort_selected_characters_by_distance(selected_characters, locations)
+
+      expect(sorted_characters.count).to eq(2)
+      expect(sorted_characters.first[:name]).to eq("Storm")
+      expect(sorted_characters.first[:location]).to eq("Baltimore")
+
+      expect(sorted_characters.last[:name]).to eq("Iron Man")
+      expect(sorted_characters.last[:location]).to eq("DC")
     end
   end
 end
