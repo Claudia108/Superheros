@@ -16,24 +16,27 @@ class Character < OpenStruct
   def character_add_location(params)
     cities = Location.new.city_coordinates.to_a
     total_combos = top_characters(params).each_with_index.map do |character, i|
-      selected = character.slice(:id, :name, :thumbnail, :comics)
+      selected = character.slice(:id, :name, :comics)
       selected[:location] = cities[i][0]
-      # $redis.hmset("characters:#{i + 1}", "id", selected[:id], "name", selected[:name], "thumbnail", selected[:thumbnail], "available_comics", selected[:comics][:available], "location", selected[:location])
       selected
     end
   end
 
-  # def get_characters
-    # another loop needed? or try MHGETALL from lua
-    # $redis.mhvals("characters:#{i + 1}")
-  # end
-
+  def cached_characters(params)
+    characters =  $redis.get("characters")
+    if characters.nil?
+      characters = character_add_location(params).to_json
+      $redis.set("characters", characters)
+      # Expire the cache, every hour
+      $redis.expire("characters", 1.hour.to_i)
+    end
+    JSON.parse(characters, symbolize_names: true)
+  end
 
   def characters_close_to_Boston(params)
-    close_by_cities = Location.new.five_hundred_miles_from_Boston.flatten
-    selected_characters = character_add_location(params).select { |character| close_by_cities.include?(character[:location]) }
+    close_by_cities = Location.new.show_sorted_cities
+    selected_characters = cached_characters(params).select { |character| close_by_cities.include?(character[:location]) }
     sort_selected_characters_by_distance(selected_characters, close_by_cities)
-    # need to improve performance with redis db fetch
   end
 
   def sort_selected_characters_by_distance(selected_characters, close_by_cities)
