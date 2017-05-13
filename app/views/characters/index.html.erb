@@ -1,25 +1,52 @@
-<h1>The Top 15 Superheros</h1>
+<main class="container-fluid">
+  <div class="row">
+    <div class="col-lg-8 col-md-8 col-sm-10 col-lg-offset-2 col-md-offset-2">
+      <br>
+      <h1 class="text-center">The Most Popular 15 Superheros Are ...</h1>
+      <br>
+      <% place = 1 %>
+      <table class="table table-striped">
+        <tr class="success">
+          <td class="text-center"><strong>Place</strong></td>
+          <td><strong>The Awesome Superhero</strong></td>
+          <td class="text-center"><strong>Appears in # comic</strong></td>
+          <td><strong>Resides in</strong></td>
+        </tr>
+        <% @characters.each do |character| %>
+          <tr>
+            <td class="text-center"><%= place %></td>
+            <td><strong><%= character[:name] %></strong></td>
+            <td class="text-center"><%= character[:comics][:available] %></td>
+            <td><%= character[:location] %></td>
+          </tr>
+          <% place += 1  %>
+        <% end %>
+      </table>
+      <br>
 
-<% place = 1 %>
-<% @characters.each do |character| %>
-
-  <h3><strong>Number <%= place %>: </strong><%= character[:name] %> </h3>
-  <p>  Appears in <%= character[:comics][:available] %> comics </p>
-  <p> Resides in beautiful <%= character[:location] %>  </p>
-  <br>
-  <% place += 1  %>
-<% end %>
-
-<h1>This is who you find within 500 Miles from Boston</h1>
-
-<h3>...from closest to furthest</h3>
-
-<% place = 1 %>
-<% @boston_characters.each_with_index do |char, i| %>
-  <h3><strong>Number <%= place %>: </strong><%= char[:name] %> </h3>
-  <p>  Appears in <%= char[:comics][:available] %> comics </p>
-  <p>Location: <%= char[:location] %> </p>
-  <p>Distance to Boston: <%= @distances[i] %> Miles </p>
-  <br>
-  <% place += 1  %>
-<% end %>
+      <h1 class="text-center">Find your heros within 500 Miles from Boston <small>...from closest to furthest</small></h1>
+      <br>
+      <table class="table table-striped">
+        <tr class="success">
+          <td class="text-center"><strong>Place</strong></td>
+          <td><strong>The Awesome Superhero</strong></td>
+          <td class="text-center"><strong>Appears in # comic</strong></td>
+          <td><strong>Resides in</strong></td>
+          <td><strong>Distance to Boston</strong></td>
+        </tr>
+        <% place = 1 %>
+        <% @boston_characters.each_with_index do |char, i| %>
+          <tr>
+            <td class="text-center"><%= place %></td>
+            <td><strong><%= char[:name] %></strong></td>
+            <td class="text-center"><%= char[:comics][:available] %></td>
+            <td><%= char[:location] %></td>
+            <td><%= @distances[i] %> Miles</td>
+          </tr>
+          <% place += 1  %>
+        <% end %>
+      </table>
+      <br>
+    </div>
+  </div>
+</main>
