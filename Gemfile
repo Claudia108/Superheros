@@ -24,6 +24,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'faraday'
 gem 'figaro'
 gem 'redis'
+gem 'redis-namespace'
+gem 'redis-rails'
+gem 'redis-rack-cache'
 
 
 # Use ActiveModel has_secure_password

@@ -14,18 +14,26 @@ class Character < OpenStruct
   end
 
   def character_add_location(params)
-    cities = Location.new.city_coordinates.to_a
-    total_combos = top_characters(params).each_with_index.map do |character, i|
-      selected = character.slice(:id, :name, :thumbnail, :comics)
-      selected[:location] = cities[i][0]
-      $redis.hmset("characters:#{i + 1}", "id", selected[:id], "name", selected[:name], "thumbnail", selected[:thumbnail], "available_comics", selected[:comics][:available], "location", selected[:location])
-      selected
-    end
+    # characters =  $redis.get("characters")
+    # if characters.nil?
+      cities = Location.new.city_coordinates.to_a
+      total_combos = top_characters(params).each_with_index.map do |character, i|
+        selected = character.slice(:name, :thumbnail, :comics)
+        selected[:location] = cities[i][0]
+        # $redis.hmset("characters:#{i + 1}", "name", selected[:name], "thumbnail", selected[:thumbnail], "available_comics", selected[:comics][:available], "location", selected[:location])
+        selected
+      end
+      # characters = total_combos.to_json
+      # $redis.set("characters", characters)
+      # Expire the cache, every 3 hours
+    # end
+    # $redis.expire("characters", 3)
+    # all = JSON.load(characters)
   end
 
-  # def get_characters
-    # another loop needed? or try MHGETALL from lua
-    # $redis.mhvals("characters:#{i + 1}")
+
+  # def get_characters(index)
+  #   $redis.hvals("characters:#{i + 1}")
   # end
 
 
