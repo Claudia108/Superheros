@@ -3,8 +3,22 @@
 <% place = 1 %>
 <% @characters.each do |character| %>
 
-  <h5><strong>Number <%= place %></strong> </h5><h3><%= character[:name] %> </h3>
+  <h3><strong>Number <%= place %>: </strong><%= character[:name] %> </h3>
   <p>  Appears in <%= character[:comics][:available] %> comics </p>
+  <br>
+  <% place += 1  %>
+<% end %>
+
+<h1>This is who you find within 500 Miles from Boston</h1>
+
+<h3>...from closest to furthest</h3>
+
+<% place = 1 %>
+<% @boston_characters.each_with_index do |char, i| %>
+  <h3><strong>Number <%= place %>: </strong><%= char[:name] %> </h3>
+  <p>  Appears in <%= char[:comics][:available] %> comics </p>
+  <p>Location: <%= char[:location] %> </p>
+  <p>Distance to Boston: <%= @distances[i] %> Miles </p>
   <br>
   <% place += 1  %>
 <% end %>

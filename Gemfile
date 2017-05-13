@@ -23,7 +23,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'faraday'
 gem 'figaro'
-gem 'redis', '~>3.2'
+gem 'redis'
 
 
 # Use ActiveModel has_secure_password

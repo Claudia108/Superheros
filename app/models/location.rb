@@ -36,4 +36,10 @@ class Location
     units = "mi"
     $redis.GEORADIUS("cities", long, lat, radius, units, "WITHDIST", "ASC")
   end
+
+  def show_distance
+    five_hundred_miles_from_Boston.map do |city|
+      city[1].to_i
+    end
+  end
 end
