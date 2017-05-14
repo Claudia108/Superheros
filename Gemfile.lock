@@ -149,6 +149,8 @@ GEM
       redis-store (>= 1.2, < 2)
     redis-store (1.3.0)
       redis (>= 2.2)
+    responders (2.2.0)
+      railties (>= 4.2.0, < 5.1)
     rspec-core (3.5.4)
       rspec-support (~> 3.5.0)
     rspec-expectations (3.5.0)
@@ -223,6 +225,7 @@ DEPENDENCIES
   redis-namespace
   redis-rack-cache
   redis-rails
+  responders (~> 2.0)
   rspec-rails
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
