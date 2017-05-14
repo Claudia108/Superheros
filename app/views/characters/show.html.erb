@@ -1,8 +1,8 @@
 <main class="container-fluid">
   <div class="row">
-    <h3 class="text-center">Find The Heros Closest To You</h3>
+    <h3 class="text-center">Find the 5 heros closest to you<br><small>...from closest to furthest</small></h3>
     <br>
-    <div class="col-lg-4 col-md-4 col-sm-4 col-lg-offset-1 col-md-offset-1 col-sm-offset-1">
+    <div class="col-lg-4 col-md-4 col-sm-4 col-lg-offset-2 col-md-offset-2 col-sm-offset-2">
       <br>
       <input type="text" size="50" name="delivery_location"  placeholder="Enter a location" class="form-control" id="pac-input" required>
       <input type="hidden" id="latitude" placeholder="Latitude" name="latitude"/>
@@ -10,22 +10,10 @@
       <br>
       <div id="map"></div>
     </div>
-    <br>
-    <div class="col-lg-6 col-md-6 col-sm-6">
-      <table class="table table-striped">
-        <tr class="success">
-          <td class="text-center"><strong>Place</strong></td>
-          <td><strong>Superhero</strong></td>
-          <td class="text-center"><strong>In # of comics</strong></td>
-          <td><strong>Resides in</strong></td>
-          <!-- <td><strong>Distance to Boston</strong></td> -->
-        </tr>
-      </table>
-      <table class="table table-striped">
-        <div id="yourCharacters"></div>
-      </table>
+    <div class="col-lg-4 col-md-4 col-sm-4">
+      <div class="list-group" id="yourCharacters"></div>
 
-      <h4 class="lead text-center"><%= link_to "-> Back to Homepage", root_path%></h4>
+      <li class="list-group-item"><%= link_to "-> Back to Homepage", root_path %></li>
     </div>
   </div>
 

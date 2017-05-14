@@ -46,6 +46,8 @@ class Character < OpenStruct
   def characters_close_to_user_location(params)
     close_by_cities = Location.new.show_sorted_cities_by_user(params)
     selected_characters = cached_characters(params).select { |character| close_by_cities.include?(character[:location]) }
-    sort_selected_characters_by_distance(selected_characters, close_by_cities)
+    closest_characters = sort_selected_characters_by_distance(selected_characters, close_by_cities)
+    distances = Location.new.show_distance_to_user(params)
+    [closest_characters[0..4], distances]
   end
 end

@@ -57,7 +57,7 @@ function initAutocomplete() {
     $('#longitude').val(long);
 
     if($("#yourCharacters").length) {
-      $("#yourCharacters").children(".table-child").remove();
+      $("#yourCharacters").children(".listing").remove();
       score = 0;
     }
 
@@ -79,22 +79,26 @@ function initAutocomplete() {
     }
 
     function renderCharacters(response) {
-      response.forEach(function(character) {
-        $('#yourCharacters').append(renderCharacter(character));
+      var distances = response[1]
+      response[0].forEach(function(character) {
+        $('#yourCharacters').append(renderCharacter(character, distances));
       });
     }
 
-    function renderCharacter(character, index) {
+    function renderCharacter(character, distances) {
       score = score + 1;
       var name = character["name"];
-      var comics = character["comics"]["available"];
       var location = character["location"];
+      var distance = distances[score - 1];
 
-      return '<tr class="table-child row-style">' +
-            '<td class="text-center cell1-style">' + score +
-            '<td class="cell2-style"><strong>' + name + '</strong></td>' +
-            '<td class="text-center cell3-style">' + comics + '</td>' +
-            '<td class="cell4-style">' + location + '</td></tr>'
+      return '<div class="listing"><br><li class="list-group-item">' +
+            '<h4 class="list-group-item-heading">' +
+            '<small class="text-muted">Number ' + score +
+            ':</small>' + '<strong>  ' + name + '</strong></h4>' +
+            '<h5 class="list-group-item-text"><small>  resides in      ' +
+            '</small>' + location + '</h5>' +
+            '<h5 class="list-group-item-text">' + distance +
+            '<small>   Miles away</small></h5></li></div>'
     };
 
     sendCoordinates(lat, long);

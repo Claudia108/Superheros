@@ -62,4 +62,11 @@ class Location
     end
   end
 
+  def show_distance_to_user(params)
+    locations = close_to_user_locations(params).map do |city|
+      city[1].to_f.round(0)
+    end
+    locations[0..4]
+  end
+
 end
