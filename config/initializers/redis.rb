@@ -1,2 +1,5 @@
-$redis = Redis.new(host: 'localhost', port: 6371)
-# $redis_memory = Redis::Namespace.new("Superheros", :redis => Redis.new)
+Rails.env.production?
+  $redis = Redis.new(url: ENV["REDIS_URL"])
+else
+  $redis = Redis.new(host: 'localhost', port: 6371)
+end
