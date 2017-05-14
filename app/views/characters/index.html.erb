@@ -2,12 +2,16 @@
   <div class="row">
     <div class="col-lg-8 col-md-8 col-sm-10 col-lg-offset-2 col-md-offset-2 col-sm-offset-1">
       <br>
-      <h1 class="text-center">The Most Popular 15 Superheros Are ...</h1>
+      <h1 class="display-3 text-center">Meeting of the Superheros </h1>
+      <br>
+      <h4 class="list-group-item text-center"> <%= link_to "-> Find The Heros Closest To You", search_path  %></h4 >
+        <br>
+      <h2 class="text-center">The most popular 15 superheros are ...</h2>
       <br>
       <% place = 1 %>
       <table class="table table-striped">
         <tr class="success">
-          <td class="text-center"><strong>Place</strong></td>
+          <td class="text-center"><strong>Number</strong></td>
           <td><strong>The Awesome Superhero</strong></td>
           <td class="text-center"><strong>Appears in # comic</strong></td>
           <td><strong>Resides in</strong></td>
@@ -25,11 +29,11 @@
 
       <br>
 
-      <h1 class="text-center">Within 500 miles from Boston <br><small>...from closest to furthest</small></h1>
+      <h2 class="text-center">Within 500 miles from Boston <br><small>...from closest to furthest</small></h2>
       <br>
       <table class="table table-striped">
         <tr class="success">
-          <td class="text-center"><strong>Place</strong></td>
+          <td class="text-center"><strong>Number</strong></td>
           <td><strong>The Awesome Superhero</strong></td>
           <td class="text-center"><strong>Appears in # comic</strong></td>
           <td><strong>Resides in</strong></td>
@@ -47,9 +51,6 @@
           <% place += 1  %>
         <% end %>
       </table>
-      <br>
-      <h3 class="text-center"> <%= link_to "Find The Heros Closest To You", search_path  %></h3>
-      <br><br>
     </div>
   </div>
 </main>

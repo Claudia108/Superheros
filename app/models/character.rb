@@ -33,7 +33,7 @@ class Character < OpenStruct
     JSON.parse(characters, symbolize_names: true)
   end
 
-  def characters_close_to_Boston(params)
+  def characters_close_to_boston(params)
     close_by_cities = Location.new.show_sorted_cities
     selected_characters = cached_characters(params).select { |character| close_by_cities.include?(character[:location]) }
     sort_selected_characters_by_distance(selected_characters, close_by_cities)

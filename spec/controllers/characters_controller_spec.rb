@@ -4,7 +4,7 @@ describe CharactersController, type: :controller do
   context "characters#index" do
     it "gets index" do
       characters = Character.new.cached_characters({})
-      boston_characters = Character.new.characters_close_to_Boston({})
+      boston_characters = Character.new.characters_close_to_boston({})
       distances = Location.new.show_distance
 
       get :index

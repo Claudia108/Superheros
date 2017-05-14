@@ -41,10 +41,10 @@ describe Character do
     end
   end
 
-  it "finds characters by their locations sorted asc" do
-    VCR.use_cassette("models/characters_close_by") do
+  it "finds characters close to Boston sorted asc" do
+    VCR.use_cassette("models/characters_close_to_boston") do
       characters = Character.new
-      close_by_characters = characters.characters_close_to_Boston({limit: 100, offset: 0 })
+      close_by_characters = characters.characters_close_to_boston({limit: 100, offset: 0 })
 
       expect(close_by_characters.count).to eq(4)
       expect(close_by_characters.first[:name]).to eq("X-Men")
@@ -81,6 +81,23 @@ describe Character do
 
       expect(sorted_characters.last[:name]).to eq("Wolverine")
       expect(sorted_characters.last[:location]).to eq("Chicago")
+    end
+  end
+
+  it "finds 5 characters closest to user's coordinates sorted asc" do
+    VCR.use_cassette("models/characters_close_to_user_location") do
+      characters = Character.new
+      close_by_characters = characters.characters_close_to_user_location({long: -73.935242, lat: 40.73061})
+
+      expect(close_by_characters.count).to eq(2)
+      expect(close_by_characters[0][0][:name]).to eq("X-Men")
+      expect(close_by_characters[0][0][:location]).to eq("NYC")
+
+      expect(close_by_characters[0][4][:name]).to eq("Iron Man")
+      expect(close_by_characters[0][4][:location]).to eq("DC")
+
+      expect(close_by_characters[1][0]).to eq(0)
+      expect(close_by_characters[1][4]).to eq(34)
     end
   end
 end

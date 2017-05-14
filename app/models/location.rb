@@ -50,7 +50,7 @@ class Location
   end
 
   def close_to_user_locations(params)
-    calculate_radius(params[:long], params[:lat], 15000)
+    calculate_radius(params[:long], params[:lat], 15000)[0..4]
   end
 
   def show_sorted_cities_by_user(params)
@@ -60,9 +60,8 @@ class Location
   end
 
   def show_distance_to_user(params)
-    locations = close_to_user_locations(params).map do |city|
+    close_to_user_locations(params).map do |city|
       city[1].to_f.round(0)
     end
-    locations[0..4]
   end
 end
