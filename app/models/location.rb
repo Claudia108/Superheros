@@ -23,26 +23,25 @@ class Location
   end
 
   def store_cities(cities)
-    # note: coordinates need to be switched to first enter long, then lat
+    # note: given city coordinates display lat, long - switched for GEOADD
     cities.map do |city|
       $redis.GEOADD("cities", city[1][1], city[1][0], city[0])
     end
   end
 
-  def close_to_user_locations(params)
-    longest_distance = 15000
-    units = "mi"
-    $redis.GEORADIUS("cities", params[:long], params[:lat], longest_distance, units, "WITHDIST", "ASC")
+  def calculate_radius(long, lat, radius)
+    $redis.GEORADIUS("cities", long, lat, radius, "mi", "WITHDIST", "ASC")
   end
 
   def five_hundred_miles_from_Boston
-    long = city_coordinates["Boston"][1]
-    lat = city_coordinates["Boston"][0]
-    radius = 500
-    units = "mi"
-    $redis.GEORADIUS("cities", long, lat, radius, units, "WITHDIST", "ASC")
+    calculate_radius(city_coordinates["Boston"][0], city_coordinates["Boston"][0], 500)
   end
 
+  def show_sorted_cities
+    five_hundred_miles_from_Boston.map do |city|
+      city[0]
+    end
+  end
 
   def show_distance
     five_hundred_miles_from_Boston.map do |city|
@@ -50,10 +49,8 @@ class Location
     end
   end
 
-  def show_sorted_cities
-    five_hundred_miles_from_Boston.map do |city|
-      city[0]
-    end
+  def close_to_user_locations(params)
+    calculate_radius(params[:long], params[:lat], 15000)
   end
 
   def show_sorted_cities_by_user(params)
@@ -68,5 +65,4 @@ class Location
     end
     locations[0..4]
   end
-
 end

@@ -1,5 +1,5 @@
 
-var centerPoint = { lat: 39.50, lng: -98.35 };
+var centerOfUS = { lat: 39.50, lng: -98.35 };
 var zoom = 4;
 var lat;
 var long;
@@ -8,13 +8,13 @@ var score = 0
 
 function initAutocomplete() {
   var map = new google.maps.Map(document.getElementById('map'), {
-        center: centerPoint,
+        center: centerOfUS,
         zoom: zoom
     });
 
   var marker = new google.maps.Marker({
       map: map,
-      position: centerPoint,
+      position: centerOfUS,
       draggable: true
   });
 
