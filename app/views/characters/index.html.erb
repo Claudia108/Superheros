@@ -1,6 +1,6 @@
 <main class="container-fluid">
   <div class="row">
-    <div class="col-lg-8 col-md-8 col-sm-10 col-lg-offset-2 col-md-offset-2">
+    <div class="col-lg-8 col-md-8 col-sm-10 col-lg-offset-2 col-md-offset-2 col-sm-offset-1">
       <br>
       <h1 class="text-center">The Most Popular 15 Superheros Are ...</h1>
       <br>
@@ -23,8 +23,19 @@
         <% end %>
       </table>
       <br>
+      <h2 class="text-center">Find The Heros Closest To You</h2>
+      <br>
 
-      <h1 class="text-center">Find your heros within 500 Miles from Boston <small>...from closest to furthest</small></h1>
+      <div class="col-lg-6 col-md-6 col-sm-8 col-lg-offset-3 col-md-offset-3 col-sm-offset-1">
+        <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+        <div id="map"></div>
+        <!-- <input class="center" id="searchTextField" type="text" size="50" placeholder="Enter a location" autocomplete="on" runat="server" />
+        <input type="hidden" id="city2" name="city2" />
+        <input type="hidden" id="cityLat" name="cityLat" />
+        <input type="hidden" id="cityLng" name="cityLng" /> -->
+      </div>
+      <br><br><br>
+      <h1 >Within 500 Miles From Boston <small>...from closest to furthest</small></h1>
       <br>
       <table class="table table-striped">
         <tr class="success">
