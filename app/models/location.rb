@@ -34,7 +34,7 @@ class Location
   end
 
   def five_hundred_miles_from_Boston
-    calculate_radius(city_coordinates["Boston"][0], city_coordinates["Boston"][0], 500)
+    calculate_radius(city_coordinates["Boston"][1], city_coordinates["Boston"][0], 500)
   end
 
   def show_sorted_cities
