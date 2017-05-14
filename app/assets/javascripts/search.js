@@ -53,6 +53,47 @@ function initAutocomplete() {
 
     $('#latitude').val(lat);
     $('#longitude').val(long);
+
+
+
+    function sendCoordinates(lat, long) {
+      $.ajax({
+        method: "POST",
+        url: "/api/v1/characters",
+        dataType: "JSON",
+        data: {
+          location: {
+            lat: lat,
+            long: long
+          }
+        },
+        success: function(response){
+          renderCharacters(response);
+        }
+      });
+    }
+
+    function renderCharacters(response) {
+      response.forEach(function(character) {
+        $('#yourCharacters').append(renderCharacter(character));
+      });
+
+    function renderCharacter(character, index) {
+      var place = index + 1
+      var name = character["name"];
+      var comics = character["comics"]["available"];
+      var location = character["location"];
+      // var distance = locations[index];
+
+      return '<td class="text-center">' + place +
+            '<td><strong>' + name + '</strong></td>' +
+            '<td class="text-center">' + comics + '</td>' +
+            '<td>' + location + '</td>'
+            //  '<td>' + distance + ' Miles</td>'
+    };
+
+    }
+    sendCoordinates(lat, long);
     $('#pac-input').val('');
   });
 }

@@ -25,12 +25,14 @@ class Location
   def store_cities(cities)
     # note: coordinates need to be switched to first enter long, then lat
     cities.map do |city|
-      entered = $redis.GEOADD("cities", city[1][1], city[1][0], city[0])
+      $redis.GEOADD("cities", city[1][1], city[1][0], city[0])
     end
   end
 
-  def store_user_locations()
-
+  def close_to_user_locations(params)
+    longest_distance = 7926
+    units = "mi"
+    $redis.GEORADIUS("cities", params[:long], params[:lat], longest_distance, units, "WITHDIST", "ASC")
   end
 
   def five_hundred_miles_from_Boston
@@ -40,6 +42,7 @@ class Location
     units = "mi"
     $redis.GEORADIUS("cities", long, lat, radius, units, "WITHDIST", "ASC")
   end
+
 
   def show_distance
     five_hundred_miles_from_Boston.map do |city|
@@ -52,4 +55,11 @@ class Location
       city[0]
     end
   end
+
+  def show_sorted_cities_by_user(params)
+    close_to_user_locations(params).map do |city|
+      city[0]
+    end
+  end
+
 end

@@ -1,7 +1,7 @@
-class Api::V1::CharactersController < Api::ApiController
+class Api::V1::CharactersController < Api::V1::ApiController
 
   def create
-    render json: Location.store_user_locations(location_params)
+    render json: Character.new.characters_close_to_user_location(location_params) and return
   end
 
   private
