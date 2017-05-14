@@ -41,6 +41,7 @@ describe Location do
 
   it "given user coordinates retrieves 5 closest cities in ascending order" do
     location = Location.new
+      # with coordinates of NYC
     cities = location.close_to_user_locations({long: -73.935242, lat: 40.73061})
 
     expect(cities.count).to eq(5)
@@ -57,6 +58,7 @@ describe Location do
 
   it "shows only formatted city distances in array for user's coordinates" do
     location = Location.new
+      # with coordinates of NYC
     cities = location.show_distance_to_user({long: -73.935242, lat: 40.73061})
 
     expect(cities.count).to eq(5)

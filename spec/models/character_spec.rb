@@ -87,17 +87,18 @@ describe Character do
   it "finds 5 characters closest to user's coordinates sorted asc" do
     VCR.use_cassette("models/characters_close_to_user_location") do
       characters = Character.new
+      # with coordinates of NYC
       close_by_characters = characters.characters_close_to_user_location({long: -73.935242, lat: 40.73061})
 
       expect(close_by_characters.count).to eq(2)
-      expect(close_by_characters[0][0][:name]).to eq("X-Men")
+      expect(close_by_characters[0][0][:name]).to eq("Spider-Man")
       expect(close_by_characters[0][0][:location]).to eq("NYC")
 
-      expect(close_by_characters[0][4][:name]).to eq("Iron Man")
-      expect(close_by_characters[0][4][:location]).to eq("DC")
+      expect(close_by_characters[0][4][:name]).to eq("Colossus")
+      expect(close_by_characters[0][4][:location]).to eq("Cleveland")
 
       expect(close_by_characters[1][0]).to eq(0)
-      expect(close_by_characters[1][4]).to eq(34)
+      expect(close_by_characters[1][4]).to eq(407)
     end
   end
 end
