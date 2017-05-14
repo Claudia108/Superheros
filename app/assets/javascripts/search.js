@@ -3,6 +3,8 @@ var centerPoint = { lat: 39.50, lng: -98.35 };
 var zoom = 4;
 var lat;
 var long;
+var score = 0
+
 
 function initAutocomplete() {
   var map = new google.maps.Map(document.getElementById('map'), {
@@ -19,6 +21,7 @@ function initAutocomplete() {
   var input = (document.getElementById('pac-input'));
   var autocomplete = new google.maps.places.Autocomplete(input);
   autocomplete.bindTo('bounds', map);
+  // $('#yourCharacters').val('');
 
   autocomplete.addListener('place_changed', function () {
     marker.setVisible(false);
@@ -79,17 +82,16 @@ function initAutocomplete() {
       });
 
     function renderCharacter(character, index) {
-      var place = index + 1
+      score = score + 1;
       var name = character["name"];
       var comics = character["comics"]["available"];
       var location = character["location"];
-      // var distance = locations[index];
 
-      return '<td class="text-center">' + place +
-            '<td><strong>' + name + '</strong></td>' +
-            '<td class="text-center">' + comics + '</td>' +
-            '<td>' + location + '</td>'
-            //  '<td>' + distance + ' Miles</td>'
+      return '<tr class="row-style">' +
+            '<td class="text-center cell1-style">' + score +
+            '<td class="cell2-style"><strong>' + name + '</strong></td>' +
+            '<td class="text-center cell3-style">' + comics + '</td>' +
+            '<td class="cell4-style">' + location + '</td></tr>'
     };
 
     }

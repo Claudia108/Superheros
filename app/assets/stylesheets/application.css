@@ -63,3 +63,23 @@
 #target {
   width: 345px;
 }
+
+.cell1-style {
+  width: 20%;
+
+}
+.cell2-style {
+  width: 45%;
+}
+
+.cell3-style {
+  width: 19%;
+}
+
+.cell4-style {
+  width: 30%;
+}
+.row-style {
+  height: 25px;
+  border: 1px solid transparent;
+}
