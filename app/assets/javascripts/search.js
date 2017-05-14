@@ -35,7 +35,7 @@ function initAutocomplete() {
         map.fitBounds(place.geometry.viewport);
     } else {
         map.setCenter(place.geometry.location);
-        map.setZoom(12);
+        map.setZoom(10);
     }
 
     marker.setPosition(place.geometry.location);
@@ -82,6 +82,7 @@ function initAutocomplete() {
       response.forEach(function(character) {
         $('#yourCharacters').append(renderCharacter(character));
       });
+    }
 
     function renderCharacter(character, index) {
       score = score + 1;
@@ -96,7 +97,6 @@ function initAutocomplete() {
             '<td class="cell4-style">' + location + '</td></tr>'
     };
 
-    }
     sendCoordinates(lat, long);
     $('#pac-input').val('');
   });
