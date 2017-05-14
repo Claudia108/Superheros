@@ -21,7 +21,6 @@ function initAutocomplete() {
   var input = (document.getElementById('pac-input'));
   var autocomplete = new google.maps.places.Autocomplete(input);
   autocomplete.bindTo('bounds', map);
-  // $('#yourCharacters').val('');
 
   autocomplete.addListener('place_changed', function () {
     marker.setVisible(false);
@@ -57,7 +56,10 @@ function initAutocomplete() {
     $('#latitude').val(lat);
     $('#longitude').val(long);
 
-
+    if($("#yourCharacters").length) {
+      $("#yourCharacters").children(".table-child").remove();
+      score = 0;
+    }
 
     function sendCoordinates(lat, long) {
       $.ajax({
@@ -87,7 +89,7 @@ function initAutocomplete() {
       var comics = character["comics"]["available"];
       var location = character["location"];
 
-      return '<tr class="row-style">' +
+      return '<tr class="table-child row-style">' +
             '<td class="text-center cell1-style">' + score +
             '<td class="cell2-style"><strong>' + name + '</strong></td>' +
             '<td class="text-center cell3-style">' + comics + '</td>' +

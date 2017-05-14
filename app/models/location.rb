@@ -30,7 +30,7 @@ class Location
   end
 
   def close_to_user_locations(params)
-    longest_distance = 7926
+    longest_distance = 15000
     units = "mi"
     $redis.GEORADIUS("cities", params[:long], params[:lat], longest_distance, units, "WITHDIST", "ASC")
   end
