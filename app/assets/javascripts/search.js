@@ -53,5 +53,6 @@ function initAutocomplete() {
 
     $('#latitude').val(lat);
     $('#longitude').val(long);
+    $('#pac-input').val('');
   });
 }

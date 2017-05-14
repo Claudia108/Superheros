@@ -29,6 +29,10 @@ class Location
     end
   end
 
+  def store_user_locations()
+
+  end
+
   def five_hundred_miles_from_Boston
     long = city_coordinates["Boston"][1]
     lat = city_coordinates["Boston"][0]

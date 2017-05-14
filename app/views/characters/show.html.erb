@@ -1,13 +1,27 @@
 <main class="container-fluid">
   <div class="row">
-    <div class="col-lg-6 col-md-6 col-sm-8 col-lg-offset-3 col-md-offset-3 col-sm-offset-1">
-      <h3 class="text-center">Find The Heros Closest To You</h3>
+    <h3 class="text-center">Find The Heros Closest To You</h3>
+    <br>
+    <div class="col-lg-4 col-md-4 col-sm-4 col-lg-offset-1 col-md-offset-1 col-sm-offset-1">
       <br>
       <input type="text" size="50" name="delivery_location"  placeholder="Enter a location" class="form-control" id="pac-input" required>
       <input type="hidden" id="latitude" placeholder="Latitude" name="latitude"/>
       <input type="hidden" id="longitude" placeholder="Longitude" name="longitude"/>
       <br>
       <div id="map"></div>
+    </div>
+    <br>
+    <div class="col-lg-6 col-md-6 col-sm-6">
+      <table class="table table-striped">
+        <tr class="success">
+          <td class="text-center"><strong>Place</strong></td>
+          <td><strong>The Awesome Superhero</strong></td>
+          <td class="text-center"><strong>Appears in # comic</strong></td>
+          <td><strong>Resides in</strong></td>
+          <td><strong>Distance to Boston</strong></td>
+        </tr>
+        <tr id="yourCharacters"></tr>
+      </table>
     </div>
   </div>
 
