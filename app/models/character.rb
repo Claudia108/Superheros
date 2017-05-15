@@ -27,8 +27,8 @@ class Character < OpenStruct
     if characters.nil?
       characters = character_add_location(params).to_json
       $redis.set("characters", characters)
-      # Expire the cache, every hour
-      $redis.expire("characters", 1.hour.to_i)
+      # Expire the cache, every 3 hours
+      $redis.expire("characters", 3.hour.to_i)
     end
     JSON.parse(characters, symbolize_names: true)
   end

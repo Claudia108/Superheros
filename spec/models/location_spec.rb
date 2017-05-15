@@ -17,7 +17,7 @@ describe Location do
 
   it "retrieves cities within 500 miles from Boston ascending by distance" do
     location = Location.new
-    cities = location.five_hundred_miles_from_Boston
+    cities = location.five_hundred_miles_from_boston
 
     expect(cities.count).to eq(4)
     expect(cities).to eq([["Boston", "0.0001"], ["NYC", "187.5856"], ["Baltimore", "360.0570"], ["DC", "395.3770"]])
@@ -41,7 +41,7 @@ describe Location do
 
   it "given user coordinates retrieves 5 closest cities in ascending order" do
     location = Location.new
-      # with coordinates of NYC
+    # with coordinates of NYC
     cities = location.close_to_user_locations({long: -73.935242, lat: 40.73061})
 
     expect(cities.count).to eq(5)
@@ -58,7 +58,7 @@ describe Location do
 
   it "shows only formatted city distances in array for user's coordinates" do
     location = Location.new
-      # with coordinates of NYC
+    # with coordinates of NYC
     cities = location.show_distance_to_user({long: -73.935242, lat: 40.73061})
 
     expect(cities.count).to eq(5)
