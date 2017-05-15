@@ -7,7 +7,8 @@ Tech Stack: Ruby, Rails, Java Script, redis, Bootstrap, Marvel API, Google Maps 
 
 * System dependencies
   * Rails ~> 4.2.6
-  * Ruby > 2.3.0
+  * Ruby ~> 2.3.0
+  * Redis ~> 3.2.8
 
 * Configuration
   * git clone git@github.com:Claudia108/Superheros.git
